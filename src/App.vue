@@ -1,16 +1,19 @@
 <template lang="pug">
 .main-layout
     NavigationInfo
+    ProjectsLayout
 </template>
 
 <script>
 
 import NavigationInfo from "@/components/NavigationInfo.vue";
+import ProjectsLayout from "@/components/ProjectsLayout.vue";
 
 export default {
   name: 'App',
   components: {
-      NavigationInfo
+      NavigationInfo,
+      ProjectsLayout,
   }
 }
 </script>

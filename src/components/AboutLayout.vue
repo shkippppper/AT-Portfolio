@@ -67,6 +67,7 @@ export default {
 <style scoped lang="scss">
 .about-layout{
     display: block;
+    color: var(--text-color);
 
     h1{
         margin: 0 auto 40px;
@@ -98,7 +99,7 @@ export default {
     a{
         all: unset;
         cursor: pointer;
-        text-decoration: underline var(--text-color);
+        text-decoration: underline var(--primary-color);
         font-weight: 500;
 
         &:hover{
@@ -119,8 +120,6 @@ export default {
             width: 50px;
             height: 50px;
             padding: 5px;
-            //border: 2px solid ;
-            //border-radius: 25px;
         }
 
         span{

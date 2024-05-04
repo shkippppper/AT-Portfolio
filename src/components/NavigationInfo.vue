@@ -10,14 +10,12 @@
     .bottom-info
         .socials-night
             .socials
-                a(href="https://www.google.com/")
-                    img(alt="Vue logo" src="../assets/logo.png")
-                a(href="https://www.google.com/")
-                    img(alt="Vue logo" src="../assets/logo.png")
-                a(href="https://www.google.com/")
-                    img(alt="Vue logo" src="../assets/logo.png")
-                a(href="https://www.google.com/")
-                    img(alt="Vue logo" src="../assets/logo.png")
+                a(href="https://www.linkedin.com/in/akaki-titberidze-b5b9911b1/" target="_blank")
+                    img(alt="Vue logo" src="@/assets/linkedin_icon.svg")
+                a(href="https://www.instagram.com/akakititberidze/" target="_blank")
+                    img(alt="Vue logo" src="../assets/instagram_icon.svg")
+                a(href="https://github.com/shkippppper" target="_blank")
+                    img(alt="Vue logo" src="../assets/github_icon.png")
             .day-night-button(@click="toggleTheme")
                 .day-night-container(:class="{'night': theme === 'dark'}")
                     .main-circle-container

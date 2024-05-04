@@ -12,6 +12,7 @@
             v-for="card in filteredProjects"
             :key="card.id"
             :data="card"
+            @click="$emit('cardClick', card.slug)"
         )
 </template>
 
@@ -32,11 +33,12 @@ export default {
         }
     },
     mounted() {
-        if(this.$route.query.tags){
-            if(Object.keys(this.$route.query.tags).length <= 1){
-                this.selectedFilters.push(this.$route.query.tags)
+        let mountedTags = this.$route.query.tags
+        if(mountedTags && !mountedTags.includes("All")){
+            if(typeof mountedTags === "string"){
+                this.selectedFilters.push(mountedTags)
             }else{
-                this.$route.query.tags.forEach(tag => {
+                mountedTags.forEach(tag => {
                     this.selectedFilters.push(tag)
                 })
             }
@@ -85,7 +87,6 @@ export default {
             if (this.selectedFilters.length === 0) {
                 this.selectedFilters.push('All')
             }
-            console.log(this.selectedFilters)
             this.$router.push({query: { tags: this.selectedFilters } })
         }
     }

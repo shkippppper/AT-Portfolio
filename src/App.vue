@@ -1,8 +1,10 @@
 <template lang="pug">
 .main-layout
-    NavigationInfo.navigation
-    .mobile-navigation
-        img(alt="Open icon" src="../assets/hamburger_icon.png")
+    NavigationInfo.navigation(:class="{'is-active': isMobileSidebarToggled}")
+    .mobile-navigation(:class="{'not-active': isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
+        img(alt="Open icon" src="@/assets/hamburger.png")
+    .close-button(:class="{'is-active': !isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
+        img(alt="Close icon" src="@/assets/close_icon.svg")
     .right-layout(:class="{'light-background' : $route.name === 'Blog' || $route.name === 'About'}")
         ProjectsLayout(v-if="$route.name === 'Projects'")
         BlogLayout(v-if="$route.name === 'Blog'")
@@ -24,6 +26,14 @@ export default {
         BlogLayout,
         AboutLayout,
     },
+    data() {
+        return {
+            isMobileSidebarToggled: false
+        }
+    },
+    methods: {
+
+    },
 }
 </script>
 
@@ -32,6 +42,15 @@ export default {
 .main-layout{
     display: grid;
     grid-template-columns: 2fr 8fr;
+
+    .mobile-navigation{
+        display: none;
+    }
+
+    .close-button{
+        display: none;
+    }
+
 
     .right-layout{
         padding: 60px 20px;
@@ -59,7 +78,83 @@ export default {
 
 @media screen and (max-width: 1200px){
     .main-layout{
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
         grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+
+        .navigation{
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translateX(-100%);
+            transition: transform 1s;
+            z-index: 100;
+            background-color: white;
+            width: 100%;
+
+            &.is-active{
+                transform: translateX(0%);
+            }
+        }
+
+        .right-layout{
+            padding: 16px;
+        }
+
+        .mobile-navigation{
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            left: 16px;
+            top: 8px;
+            transition: opacity 0.4s ease;
+
+            &.not-active{
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            img{
+                width: 40px;
+                transition: opacity 0.2s ease;
+
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        .close-button {
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            right: 16px;
+            top: 8px;
+            border-radius: 25px;
+            overflow: hidden;
+            width: 30px;
+            height: 30px;
+            z-index: 101;
+            transform: translateX(0%);
+            transition: transform 1s;
+
+            &.is-active{
+                transform: translateX(300%);
+            }
+
+            img {
+                width: 30px;
+                transition: opacity 0.2s ease;
+
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+        }
     }
 }
 

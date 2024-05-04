@@ -28,7 +28,20 @@ export default {
     data() {
         return{
             projects: projectData,
-            selectedFilters: ["All"]
+            selectedFilters: []
+        }
+    },
+    mounted() {
+        if(this.$route.query.tags){
+            if(Object.keys(this.$route.query.tags).length <= 1){
+                this.selectedFilters.push(this.$route.query.tags)
+            }else{
+                this.$route.query.tags.forEach(tag => {
+                    this.selectedFilters.push(tag)
+                })
+            }
+        }else {
+            this.selectedFilters = ["All"]
         }
     },
     computed: {
@@ -69,6 +82,11 @@ export default {
                     this.selectedFilters.push(filter)
                 }
             }
+            if (this.selectedFilters.length === 0) {
+                this.selectedFilters.push('All')
+            }
+            console.log(this.selectedFilters)
+            this.$router.push({query: { tags: this.selectedFilters } })
         }
     }
 }
@@ -76,20 +94,19 @@ export default {
 </script>
 <style scoped lang="scss">
 .project-layout{
-    padding: 60px 20px;
-
     .filter-layout{
         display: flex;
         align-items: center;
         gap: 10px;
         margin-bottom: 20px;
+        flex-wrap: wrap;
 
         .filter{
             padding: 4px 8px;
             background-color: var(--background-color);
             border-radius: 4px;
             cursor: pointer;
-            opacity: 0.4;
+            opacity: 0.6;
             color: var(--text-color);
 
             &:hover{
@@ -105,7 +122,7 @@ export default {
 
     .grid-layout{
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 30px;
     }
 
@@ -119,4 +136,42 @@ export default {
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 2000px){
+    .project-layout {
+        .grid-layout{
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 1440px){
+    .project-layout {
+        .grid-layout{
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .project-layout {
+        .filter-layout{
+            margin-left: 50px;
+        }
+        .grid-layout{
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 749px){
+    .project-layout {
+        .grid-layout{
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
 </style>

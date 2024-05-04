@@ -1,11 +1,11 @@
 <template lang="pug">
 .main-layout
-    NavigationInfo.navigation(:class="{'is-active': isMobileSidebarToggled}")
+    NavigationInfo.navigation(:class="{'is-active': isMobileSidebarToggled}" @routeChanged="isMobileSidebarToggled = false")
+        .close-button(:class="{'is-active': !isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
+            img(alt="Close icon" src="@/assets/close_icon.svg")
     .mobile-navigation(:class="{'not-active': isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
         img(alt="Open icon" src="@/assets/hamburger.png")
-    .close-button(:class="{'is-active': !isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
-        img(alt="Close icon" src="@/assets/close_icon.svg")
-    .right-layout(:class="{'light-background' : $route.name === 'Blog' || $route.name === 'About'}")
+    .right-layout
         ProjectsLayout(v-if="$route.name === 'Projects'")
         BlogLayout(v-if="$route.name === 'Blog'")
         AboutLayout(v-if="$route.name === 'About'")
@@ -28,8 +28,13 @@ export default {
     },
     data() {
         return {
-            isMobileSidebarToggled: false
+            isMobileSidebarToggled: false,
+            theme: ""
         }
+    },
+    created() {
+        this.theme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute('data-theme', this.theme);
     },
     methods: {
 
@@ -42,6 +47,8 @@ export default {
 .main-layout{
     display: grid;
     grid-template-columns: 2fr 8fr;
+    background-color: var(--background-color);
+    height: 100%;
 
     .mobile-navigation{
         display: none;
@@ -54,8 +61,8 @@ export default {
 
     .right-layout{
         padding: 60px 20px;
-        background-color: white;
-        transition: background-color 0.6s ease;
+        transition: background-color 0.2s ease;
+        background-color: var(--background-color-less);
 
         &.light-background{
             background-color: var(--background-color);
@@ -76,6 +83,14 @@ export default {
     }
 }
 
+@media screen and (max-width: 1440px) {
+    .main-layout{
+        .right-layout {
+            padding: 30px 32px;
+        }
+    }
+}
+
 @media screen and (max-width: 1200px){
     .main-layout{
         width: 100%;
@@ -93,7 +108,7 @@ export default {
             transform: translateX(-100%);
             transition: transform 1s;
             z-index: 100;
-            background-color: white;
+            background-color: var(--background-color);
             width: 100%;
 
             &.is-active{
@@ -103,6 +118,7 @@ export default {
 
         .right-layout{
             padding: 16px;
+            height: 100%;
         }
 
         .mobile-navigation{
@@ -139,11 +155,12 @@ export default {
             width: 30px;
             height: 30px;
             z-index: 101;
-            transform: translateX(0%);
-            transition: transform 1s;
+            opacity: 1;
+            transition: opacity 0.2s ease;
 
             &.is-active{
-                transform: translateX(300%);
+                opacity: 0;
+                pointer-events: none;
             }
 
             img {
@@ -157,6 +174,4 @@ export default {
         }
     }
 }
-
-
 </style>

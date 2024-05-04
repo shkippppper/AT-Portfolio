@@ -15,6 +15,7 @@ body {
     --text-color-less: #404040;
     --primary-color: #8C8C8C;
     --main-color: #A6A6A6;
+    --background-color-less: #E2E2E2;
 }
 
 [data-theme="dark"] {
@@ -23,4 +24,5 @@ body {
     --text-color-less: #A6A6A6;
     --primary-color: #8C8C8C;
     --main-color: #404040;
+    --background-color-less: #1f1f1f;
 }

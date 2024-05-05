@@ -6,9 +6,11 @@
     .mobile-navigation(:class="{'not-active': isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
         img(alt="Open icon" src="@/assets/hamburger.png")
     .right-layout
-        ProjectsLayout(v-if="$route.name === 'Projects'")
-        BlogLayout(v-if="$route.name === 'Blog'")
+        ProjectsLayout(v-if="$route.name === 'Projects'" @cardClick="projectClicked")
+        BlogLayout(v-if="$route.name === 'Blog'" @cardClick="blogClicked")
         AboutLayout(v-if="$route.name === 'About'")
+        ProjectDetails(v-if="$route.name === 'ProjectDetails'" :slug="$route.params.slug")
+        BlogDetails(v-if="$route.name === 'BlogDetails'" :slug="$route.params.slug")
 </template>
 
 <script>
@@ -17,14 +19,18 @@ import NavigationInfo from "@/components/NavigationInfo.vue";
 import ProjectsLayout from "@/components/ProjectsLayout.vue";
 import BlogLayout from "@/components/BlogLayout.vue";
 import AboutLayout from "@/components/AboutLayout.vue";
+import ProjectDetails from "@/components/ProjectDetails.vue";
+import BlogDetails from "@/components/BlogDetails.vue";
 
 export default {
     name: 'App',
     components: {
+        BlogDetails,
         NavigationInfo,
         ProjectsLayout,
         BlogLayout,
         AboutLayout,
+        ProjectDetails
     },
     data() {
         return {
@@ -37,7 +43,12 @@ export default {
         document.documentElement.setAttribute('data-theme', this.theme);
     },
     methods: {
-
+        projectClicked(slug){
+            this.$router.push({ name: 'ProjectDetails', params: { slug: slug } })
+        },
+        blogClicked(slug){
+            this.$router.push({ name: 'BlogDetails', params: { slug: slug } })
+        }
     },
 }
 </script>

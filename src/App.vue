@@ -128,17 +128,25 @@ export default {
         }
 
         .right-layout{
-            padding: 16px;
+            padding: 8px 16px 80px;
             height: 100%;
+            overflow-y: auto;
         }
 
         .mobile-navigation{
             cursor: pointer;
-            display: block;
             position: absolute;
-            left: 16px;
-            top: 8px;
+            left: 8px;
+            top: 4px;
             transition: opacity 0.4s ease;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            background-color: var(--background-color-less);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
 
             &.not-active{
                 opacity: 0;

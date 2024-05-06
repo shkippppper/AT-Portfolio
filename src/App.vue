@@ -2,9 +2,9 @@
 .main-layout
     NavigationInfo.navigation(:class="{'is-active': isMobileSidebarToggled}" @routeChanged="isMobileSidebarToggled = false")
         .close-button(:class="{'is-active': !isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
-            img(alt="Close icon" src="@/assets/close_icon.svg")
+            img(alt="Close icon" src="@/assets/images/icons/close_icon.svg")
     .mobile-navigation(:class="{'not-active': isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
-        img(alt="Open icon" src="@/assets/hamburger.png")
+        img(alt="Open icon" src="@/assets/images/icons/hamburger.png")
     .right-layout
         ProjectsLayout(v-if="$route.name === 'Projects'" @cardClick="projectClicked")
         BlogLayout(v-if="$route.name === 'Blog'" @cardClick="blogClicked")

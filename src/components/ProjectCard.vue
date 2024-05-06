@@ -8,7 +8,7 @@
                 .tag(v-for="tag in data.tags")
                     span(v-if="tag") {{tag}}
     .main-content
-        img(alt="Vue logo" src="../assets/logo.png")
+        img(alt="Vue logo" src="@/assets/images/icons/logo.png")
 </template>
 
 <script>
@@ -94,6 +94,7 @@ export default {
             align-items: center;
 
             p{
+                text-align: center;
                 font-size: 32px;
             }
 

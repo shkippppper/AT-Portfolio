@@ -5,7 +5,7 @@
     .download-cv
         span To see my resume click on the&nbsp;
         a.download-link(href="/files/Akaki_Titberidze_CV_2024_ENG.pdf" target="_blank") Link
-            img(alt="Vue logo" src="../assets/cv_logo.webp")
+            //img(alt="Vue logo" src="@/assets/images/icons/cv_logo.webp")
 
         //.download-text Akaki_Titberidze_CV_2024_ENG.pdf
     h2 My Journey
@@ -151,5 +151,32 @@ export default {
     }
 }
 
+@media screen and (max-width: 1200px){
+    .about-layout {
+        h1{
+            padding-left: 50px;
+        }
+    }
+}
+
+@media screen and (max-width: 749px){
+    .about-layout {
+        h1 {
+            padding-left: unset;
+            margin: 0 auto 20px 50px;
+            font-size: 36px;
+        }
+
+        h2{
+            margin: 20px auto 10px;
+            font-size: 24px;
+        }
+
+        p{
+            margin: 16px auto;
+            font-size: 16px;
+        }
+    }
+}
 </style>
 

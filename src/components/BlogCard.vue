@@ -8,7 +8,7 @@
                 .tag(v-for="tag in data.tags")
                     span(v-if="tag") {{tag}}
     .main-content
-        img(alt="Vue logo" src="../assets/logo.png")
+        img(alt="Vue logo" src="@/assets/images/icons/logo.png")
 </template>
 
 <script>

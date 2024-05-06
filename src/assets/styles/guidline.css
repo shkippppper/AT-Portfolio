@@ -1,0 +1,53 @@
+.guideline-styles h1 {
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+}
+
+.guideline-styles h2 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+}
+
+.guideline-styles p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -.02em;
+}
+
+.guideline-styles a {
+    font-size: 20px;
+    all: unset;
+    cursor: pointer;
+    text-decoration: underline var(--primary-color);
+    font-weight: 500;
+}
+
+.guideline-styles a:hover {
+    color: var(--primary-color);
+    text-decoration: unset;
+}
+
+
+@media screen and (max-width: 749px){
+    .guideline-styles h1 {
+        font-size: 36px;
+    }
+
+    .guideline-styles h2{
+        font-size: 24px;
+    }
+
+    .guideline-styles p{
+        font-size: 16px;
+    }
+
+    .guideline-styles a{
+        font-size: 16px;
+    }
+}
+

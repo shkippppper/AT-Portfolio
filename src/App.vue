@@ -1,10 +1,20 @@
 <template lang="pug">
 .main-layout
-    NavigationInfo.navigation(:class="{'is-active': isMobileSidebarToggled}" @routeChanged="isMobileSidebarToggled = false")
-        .close-button(:class="{'is-active': !isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
-            img(alt="Close icon" src="@/assets/images/icons/close_icon.svg")
-    .mobile-navigation(:class="{'not-active': isMobileSidebarToggled}" @click="isMobileSidebarToggled = !isMobileSidebarToggled")
-        img(alt="Open icon" src="@/assets/images/icons/hamburger.png")
+    NavigationInfo.navigation(
+        :class="{'is-active': isMobileSidebarToggled}"
+        @routeChanged="isMobileSidebarToggled = false"
+        @themeChanged="(newTheme) => {theme = newTheme}"
+        )
+        .close-button(
+            :class="{'is-active': !isMobileSidebarToggled}"
+            @click="isMobileSidebarToggled = !isMobileSidebarToggled"
+            )
+            img(alt="Close icon" src="@/assets/images/icons/close_icon.svg" :class="{'is-white': theme === 'dark'}")
+    .mobile-navigation(
+        :class="{'not-active': isMobileSidebarToggled}"
+        @click="isMobileSidebarToggled = !isMobileSidebarToggled"
+        )
+        img(alt="Open icon" src="@/assets/images/icons/hamburger.png" :class="{'is-white': theme === 'dark'}")
     .right-layout
         ProjectsLayout(v-if="$route.name === 'Projects'" @cardClick="projectClicked")
         BlogLayout(v-if="$route.name === 'Blog'" @cardClick="blogClicked")
@@ -117,7 +127,7 @@ export default {
             left: 0;
             top: 0;
             transform: translateX(-100%);
-            transition: transform 1s;
+            transition: transform 1s ease, background-color 0.2s ease;
             z-index: 100;
             background-color: var(--background-color);
             width: 100%;
@@ -160,6 +170,10 @@ export default {
                 &:hover {
                     opacity: 0.6;
                 }
+
+                &.is-white{
+                    filter: invert(90%) sepia(93%) saturate(0%) hue-rotate(100deg) brightness(100%) contrast(119%);
+                }
             }
         }
 
@@ -188,6 +202,10 @@ export default {
 
                 &:hover {
                     opacity: 0.6;
+                }
+
+                &.is-white{
+                    filter: invert(90%) sepia(93%) saturate(0%) hue-rotate(100deg) brightness(100%) contrast(119%);
                 }
             }
         }

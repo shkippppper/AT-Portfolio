@@ -11,11 +11,11 @@
         .socials-night
             .socials
                 a(href="https://www.linkedin.com/in/akaki-titberidze-b5b9911b1/" target="_blank")
-                    img(alt="Linkedin logo" src="@/assets/images/icons/linkedin_icon.svg")
+                    img(alt="Linkedin logo" src="@/assets/images/icons/linkedin_icon.svg" :class="{'is-white': theme === 'dark'}")
                 a(href="https://www.instagram.com/akakititberidze/" target="_blank")
-                    img(alt="Instagram logo" src="@/assets/images/icons/instagram_icon.svg")
+                    img(alt="Instagram logo" src="@/assets/images/icons/instagram_icon.svg" :class="{'is-white': theme === 'dark'}")
                 a(href="https://github.com/shkippppper" target="_blank")
-                    img(alt="Github logo" src="@/assets/images/icons/github_icon.png")
+                    img(alt="Github logo" src="@/assets/images/icons/github_icon.png" :class="{'is-white': theme === 'dark'}")
             .day-night-button(@click="toggleTheme")
                 .day-night-container(:class="{'night': theme === 'dark'}")
                     .main-circle-container
@@ -55,6 +55,7 @@ export default {
             this.theme = this.theme === 'light' ? 'dark' : 'light'
             document.documentElement.setAttribute('data-theme', this.theme)
             localStorage.setItem('theme', this.theme)
+            this.$emit('themeChanged', this.theme)
         }
     }
 }
@@ -162,6 +163,10 @@ export default {
                 img {
                     width: 30px;
                     height: 30px;
+
+                    &.is-white{
+                        filter: invert(90%) sepia(93%) saturate(0%) hue-rotate(100deg) brightness(100%) contrast(119%);
+                    }
                 }
             }
 

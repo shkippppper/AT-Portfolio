@@ -28,7 +28,12 @@ const echoesOfTheUnderhallsData = {
         {
             title: "Quick Features",
             scrollTo: 'quickFeatures',
-            subTitles: []
+            subTitles: [
+                {
+                    title: "Core Gameplay",
+                    scrollTo: 'coreGameplayLoop',
+                },
+            ]
         },
         {
             title: "Play The Game",
@@ -39,19 +44,19 @@ const echoesOfTheUnderhallsData = {
     detailsData: [
         {
             header: "Genres:",
-            subItems: ["Roguelike","Singleplayer", "Action Game", "Casual Game"]
+            listing: "Roguelike, Singleplayer, Action Game, Casual Game"
         },
         {
             header: "Development Tools:",
-            subItems: ["c#" ,"Unity", "Photoshop"]
+            listing: "c#, Unity, Photoshop,"
         },
         {
             header: "Duration:",
-            subItems: ["[2 Months]", "25/12/22 - 20/02/23"]
+            listing: "25/12/22 - 20/02/23 [2 Months]"
         },
         {
             header: "My Roles:",
-            subItems: ["Game Designer", "Game Developer", "Level Designer", "2D Designer"]
+            listing: "Game Designer, Game Developer, Level Designer, 2D Designer"
         },
     ]
 }

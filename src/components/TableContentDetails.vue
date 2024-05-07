@@ -9,11 +9,11 @@
                 .indexing {{index+1}}. {{subindex+1}}
                 p {{subcontent.title}}
     .details-container
-        .details-header Project Details
+        //.details-header Project Details
         .details-listing
             .detail-cell(v-for="detail in projectData?.detailsData")
                 .detail-cell-header {{detail.header}}
-                .detail-cell-subitem(v-for="subItem in detail.subItems") {{subItem}}
+                .detail-cell-subitem {{detail.listing}}
 
 
 
@@ -63,12 +63,13 @@ export default {
             cursor: pointer;
             flex-direction: column;
             gap: 6px;
+
             .indexing{
                 font-size: 16px;
-                font-weight: 400;
+                font-weight: 500;
                 line-height: 1.5;
                 letter-spacing: -.02em;
-                color: var(--text-color-less);
+                color: var(--text-color);
                 width: 18px;
             }
 
@@ -118,18 +119,22 @@ export default {
             gap: 8px;
             align-items: flex-start;
             justify-content: space-evenly;
+            flex-direction: column;
+            height: 100%;
 
             .detail-cell {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-direction: column;
+                //flex-direction: column;
+                gap: 0.25em;
 
                 .detail-cell-header{
-                    font-size: 22px;
+                    font-size: 18px;
                     font-weight: 500;
                     line-height: 1.5;
                     letter-spacing: -.02em;
+                    color: var(--text-color);
                 }
 
                 .detail-cell-subitem{
@@ -137,6 +142,7 @@ export default {
                     font-weight: 400;
                     line-height: 1.5;
                     letter-spacing: -.02em;
+                    color: var(--text-color);
                 }
             }
         }

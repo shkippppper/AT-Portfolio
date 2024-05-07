@@ -51,9 +51,14 @@ export default {
 
     methods: {
         contentClicked(name){
-            const element = document.getElementById(name)
+            const element = document.getElementById(name);
             if (element) {
-                element.scrollIntoView({ behavior: "smooth" })
+                const elementPosition = element.getBoundingClientRect().top
+                const offsetPosition = window.pageYOffset + elementPosition - 40
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                })
             }
         }
     },

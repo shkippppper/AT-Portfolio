@@ -1,5 +1,5 @@
 <template lang="pug">
-.main-layout
+.main-layout.custom-scrollbar
     NavigationInfo.navigation(
         :class="{'is-active': isMobileSidebarToggled}"
         @routeChanged="isMobileSidebarToggled = false"
@@ -15,7 +15,7 @@
         @click="isMobileSidebarToggled = !isMobileSidebarToggled"
         )
         img(alt="Open icon" src="@/assets/images/icons/hamburger.png" :class="{'is-white': theme === 'dark'}")
-    .right-layout
+    .right-layout.custom-scrollbar
         ProjectsLayout(v-if="$route.name === 'Projects'" @cardClick="projectClicked")
         BlogLayout(v-if="$route.name === 'Blog'" @cardClick="blogClicked")
         AboutLayout(v-if="$route.name === 'About'")
@@ -84,6 +84,7 @@ export default {
         padding: 60px 20px;
         transition: background-color 0.2s ease;
         background-color: var(--background-color-less);
+        overflow: auto;
 
         &.light-background{
             background-color: var(--background-color);

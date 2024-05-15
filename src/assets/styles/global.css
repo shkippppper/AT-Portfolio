@@ -26,3 +26,64 @@ body {
     --main-color: #404040;
     --background-color-less: #1f1f1f;
 }
+
+.custom-scrollbar::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background: var(--background-color);  /* Background color of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+    margin: 2px;
+    background: var(--main-color);
+    border-radius: 8px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+    margin: 2px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner,
+body::-webkit-scrollbar-corner {
+    background: var(--background-color);
+}
+
+/* Dark Theme Scrollbar */
+[data-theme="dark"] .custom-scrollbar::-webkit-scrollbar,
+[data-theme="dark"] body::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background: var(--background-color);  /* Dark theme background color */
+}
+
+[data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb,
+[data-theme="dark"] body::-webkit-scrollbar-thumb {
+    margin: 2px;
+    background: var(--text-color-less);
+    border-radius: 8px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+}
+
+[data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] body::-webkit-scrollbar-thumb:hover {
+    background: var(--text-color);
+    margin: 2px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+[data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-corner,
+[data-theme="dark"] body::-webkit-scrollbar-corner {
+    background: var(--background-color);
+}
